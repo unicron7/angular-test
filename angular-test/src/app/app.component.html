@@ -1,0 +1,31 @@
+<form id="form" [formGroup]="form" (ngSubmit)="test()">
+  <div class="form-group">
+      <label for="code">Código:</label>
+      <input appNoEspacios type="text" formControlName="code" id="code" class="form-control"/>
+      <div *ngIf="form.controls['code'].invalid && (form.controls['code'].dirty || form.controls['code'].touched)">
+          <small class="text-danger" *ngIf="form.controls['code'].errors?.['required']">
+              El campo codigo es requerido
+          </small>
+          <small class="text-danger" *ngIf="form.controls['code'].errors?.['maxlength']">
+              Longitud máxima: {{form.controls['code'].errors?.['maxlength'].requiredLength}}
+          </small>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label for="description">Descripción:</label>
+      <input appSoloNumeros type="text" formControlName="description" id="description" class="form-control"/>
+      <div *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
+          <small class="text-danger" *ngIf="form.controls['description'].errors?.['required']">
+              El campo codigo es requerido
+          </small>
+          <small class="text-danger" *ngIf="form.controls['description'].errors?.['pattern']">
+              Solo se aceptan caracteres alfanumericos
+          </small>
+      </div>
+
+  </div>
+
+  <button class="btn btn-secondary" type="button">Cancelar</button>
+  <button class="btn btn-primary" type="submit">Enviar</button>
+</form>
